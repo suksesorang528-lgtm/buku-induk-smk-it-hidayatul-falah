@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Buku Induk Siswa — SMK IT HIDAYATUL FALAH</title>
+<style>
+:root{--blue:#07508f;--blue2:#0b6bb5;--light:#eef7ff;--gold:#d4a62a;--ink:#18354e;--muted:#708090;--white:#fff;--line:#dce8f1;--danger:#c53b32;--shadow:0 8px 25px rgba(7,55,91,.10)}
+*{box-sizing:border-box}body{margin:0;background:#f5f9fc;color:var(--ink);font:14px "Segoe UI",Arial,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}
+.login{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:18px;background:linear-gradient(135deg,#063963,#1175bd)}
+.loginbox{width:min(420px,100%);background:#fff;border-radius:22px;padding:30px;box-shadow:0 25px 70px #00294c66;text-align:center}.logo{width:85px;height:85px;object-fit:contain;border-radius:12px}.loginbox h1{color:var(--blue);font-size:22px;margin:12px 0 4px}.gold{color:var(--gold)}.muted{color:var(--muted)}.field{text-align:left;margin:11px 0}.field label{display:block;font-weight:700;color:var(--blue);font-size:13px;margin-bottom:5px}.field input,.field select,.field textarea,.search{width:100%;padding:10px 11px;border:1px solid var(--line);border-radius:9px;outline:none;background:#fff}.field input:focus,.field select:focus,.field textarea:focus,.search:focus{border-color:var(--blue2);box-shadow:0 0 0 3px #ddecfb}.btn{border:0;border-radius:9px;padding:9px 13px;font-weight:700}.primary{background:var(--blue);color:#fff}.goldbtn{background:var(--gold);color:#fff}.secondary{background:#edf5fb;color:var(--blue);border:1px solid #d5e5f1}.danger{background:#fff0ee;color:var(--danger);border:1px solid #ffd3cf}.wide{width:100%}.err{height:18px;color:var(--danger);font-size:12px;margin-top:8px}
+.app{display:none}.side{position:fixed;left:0;top:0;bottom:0;width:250px;background:linear-gradient(#063963,#07508f);padding:15px 12px;color:#fff;z-index:5;overflow:auto}.brand{display:flex;gap:10px;align-items:center;padding:6px 7px 17px;border-bottom:1px solid #ffffff25;margin-bottom:12px}.brand img{width:45px;height:45px;object-fit:contain;background:#fff;border-radius:8px}.brand b{display:block;font-size:13px}.brand small{color:#e6c55f}.nav button{width:100%;border:0;background:transparent;color:#dceeff;text-align:left;padding:11px;border-radius:9px;margin:2px 0}.nav button:hover,.nav button.active{background:#ffffff18;color:#fff}.nav .ico{display:inline-block;width:25px}.logout{margin-top:15px;width:100%}
+.main{margin-left:250px;padding:20px}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}.top h2{margin:0;color:var(--blue)}.user{padding:8px 12px;background:#fff;border:1px solid var(--line);border-radius:20px;color:var(--blue)}
+.page{display:none}.page.active{display:block}.gridstats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.card{background:#fff;border:1px solid var(--line);border-radius:15px;padding:17px;box-shadow:var(--shadow);margin-bottom:16px}.stat .num{font-size:29px;font-weight:800;color:var(--blue)}.stat .label{color:var(--muted);font-size:12px}.toolbar{display:flex;justify-content:space-between;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:13px}.tools{display:flex;gap:8px;flex-wrap:wrap}.search{width:240px}.tablewrap{overflow:auto}.table{width:100%;border-collapse:collapse;min-width:900px}.table th,.table td{padding:9px;border-bottom:1px solid #e9eff4;text-align:left;font-size:12px;vertical-align:top}.table th{background:#f0f7fd;color:var(--blue)}.actions{display:flex;gap:5px;flex-wrap:wrap}.badge{display:inline-block;background:#e8f4ff;color:var(--blue);padding:4px 8px;border-radius:20px;font-size:11px;font-weight:700}
+.classgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:15px}.classcard{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden;box-shadow:var(--shadow)}.classhead{background:var(--blue);color:#fff;padding:13px}.classhead b{font-size:17px}.classbody{padding:10px}.classstudent{display:flex;justify-content:space-between;gap:8px;padding:9px;border-bottom:1px solid #edf2f5}.classstudent:last-child{border-bottom:0}.classstudent small{color:var(--muted)}
+.notice{background:#fff9e9;border-left:4px solid var(--gold);padding:11px;border-radius:7px;color:#70591b}
+.modal{display:none;position:fixed;inset:0;background:#00243d88;z-index:30;align-items:center;justify-content:center;padding:15px}.modal.show{display:flex}.modalbox{width:min(1000px,100%);max-height:94vh;overflow:auto;background:#fff;border-radius:17px;padding:18px}.modalhead{display:flex;justify-content:space-between;align-items:center}.modalhead h3{margin:0;color:var(--blue)}.close{border:0;border-radius:50%;width:33px;height:33px}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}.section{grid-column:1/-1;color:var(--gold);font-weight:800;border-bottom:1px solid var(--line);padding:12px 0 6px}.full{grid-column:1/-1}.modalactions{display:flex;justify-content:flex-end;gap:8px;margin-top:12px}.settings{display:grid;grid-template-columns:1fr 1fr;gap:15px}.preview{display:flex;align-items:center;gap:12px}.preview img{width:55px;height:55px;object-fit:contain}.toast{display:none;position:fixed;right:18px;bottom:18px;background:#143d5d;color:#fff;padding:11px 15px;border-radius:9px;z-index:60}
+@media(max-width:850px){.side{width:205px}.main{margin-left:205px}.gridstats{grid-template-columns:1fr 1fr}.settings{grid-template-columns:1fr}}
+@media(max-width:620px){.side{position:static;width:100%}.main{margin-left:0;padding:12px}.nav{display:grid;grid-template-columns:1fr 1fr}.gridstats{grid-template-columns:1fr 1fr}.formgrid{grid-template-columns:1fr}.section,.full{grid-column:auto}.top{align-items:flex-start;gap:8px;flex-direction:column}}
+@media print{body{background:#fff}button{display:none}.top,.toolbar,.modal,.toast,.nav,.side,.user{display:none !important}.app{display:block !important}.page.active{display:block !important}.main{margin-left:0 !important;padding:0 !important}.printable{display:block}.no-print{display:none}.card{box-shadow:none;border:1px solid #ccc}.table{width:100%}.table tr{page-break-inside:avoid}}
+</style>
+</head>
+<body>
+<div id="login" class="login">
+<div class="loginbox">
+<img id="loginLogo" class="logo"><h1 id="loginSchool">SMK IT HIDAYATUL FALAH</h1><b class="gold">BUKU INDUK SISWA</b>
+<p class="muted">Masuk untuk mengelola data sekolah.</p>
+<div class="field"><label>Email Login</label><input id="lu" type="email" autocomplete="username" placeholder="Email akun Supabase"></div>
+<div class="field"><label>Password</label><input id="lp" type="password" autocomplete="current-password"></div>
+<button class="btn primary wide" onclick="login()">Masuk</button><div id="loginErr" class="err"></div>
+</div></div>
+
+<div id="app" class="app">
+<aside class="side">
+<div class="brand"><img id="sideLogo"><div><b id="sideSchool">SMK IT HIDAYATUL FALAH</b><small>Buku Induk Siswa</small></div></div>
+<nav class="nav">
+<button class="active" data-p="dash">🏠 &nbsp; Dasbor</button>
+<button data-p="students">👨‍🎓 &nbsp; Data Siswa</button>
+<button data-p="alumni">🎓 &nbsp; Alumni</button>
+<button data-p="classes">🏫 &nbsp; Kelas Siswa</button>
+<button data-p="grades">📊 &nbsp; Data Nilai</button>
+<button data-p="parents">👪 &nbsp; Data Orang Tua</button>
+<button data-p="settings">⚙️ &nbsp; Pengaturan</button>
+</nav>
+<button class="btn goldbtn logout" onclick="logout()">Keluar</button>
+</aside>
+<main class="main">
+<div class="top"><h2 id="title">Dasbor</h2><div class="user">👤 <span id="who"></span></div></div>
+
+<section id="dash" class="page active">
+<div style="margin-bottom:15px"><button class="btn primary" onclick="printDash()">🖨️ Print Dasbor</button></div>
+<div class="gridstats">
+<div class="card stat"><div class="num" id="nStudent">0</div><div class="label">Siswa Aktif</div></div>
+<div class="card stat"><div class="num" id="nAlumni">0</div><div class="label">Alumni</div></div>
+<div class="card stat"><div class="num" id="nClass">0</div><div class="label">Kelas Terdaftar</div></div>
+<div class="card stat"><div class="num" id="nYear">0</div><div class="label">Tahun Masuk</div></div>
+</div>
+<div class="card"><h3 style="color:var(--blue)">Selamat datang</h3><p>Kelola data siswa, orang tua, alumni, nilai, dan pembagian kelas dari satu aplikasi.</p><div class="notice">Data utama tersimpan di database online Supabase. Anda dapat membuka aplikasi dari HP, tablet, atau laptop lain dan menggunakan akun yang sama.</div></div>
+</section>
+
+<section id="students" class="page"><div class="card">
+<div class="toolbar"><div class="tools"><button class="btn primary" onclick="studentModal()">＋ Tambah Siswa</button><input id="sq" class="search" placeholder="Cari nama, NISN, kelas..." oninput="renderStudents()"></div><div class="tools"><button class="btn secondary" onclick="csv()">Export CSV</button><button class="btn primary" onclick="printStudents()">🖨️ Print</button></div></div>
+<div class="tablewrap"><table class="table"><thead><tr><th>Nama</th><th>NISN</th><th>TTL</th><th>Kelas</th><th>Tahun</th><th>Agama</th><th>Alamat</th><th>Fisik</th><th>Aksi</th></tr></thead><tbody id="studentRows"></tbody></table></div>
+</div></section>
+
+<section id="alumni" class="page"><div class="card">
+<div class="toolbar"><div class="tools"><button class="btn primary" onclick="alumniModal()">＋ Tambah Alumni</button><input id="aq" class="search" placeholder="Cari alumni..." oninput="renderAlumni()"></div></div>
+<div class="tablewrap"><table class="table" style="min-width:650px"><thead><tr><th>Nama</th><th>NISN</th><th>Kelas Terakhir</th><th>Tahun Lulus</th><th>Keterangan</th><th>Aksi</th></tr></thead><tbody id="alumniRows"></tbody></table></div>
+</div></section>
+
+<section id="classes" class="page"><div class="card">
+<div class="toolbar"><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn primary" onclick="classModal()">＋ Tambah Kelas</button></div><div class="muted">Siswa otomatis dikelompokkan berdasarkan kelas yang terdaftar.</div></div>
+<div id="classGrid" class="classgrid"></div>
+</div></section>
+
+<section id="grades" class="page"><div class="card">
+<div class="toolbar"><div class="tools"><button class="btn primary" onclick="gradeModal()">＋ Tambah Nilai</button><input id="gq" class="search" placeholder="Cari siswa / NIS / kelas..." oninput="renderGrades()"></div><button class="btn primary" onclick="printGrades()">🖨️ Print Nilai</button></div>
+<div class="tablewrap"><table class="table" style="min-width:1500px"><thead><tr><th>Siswa</th><th>NIS</th><th>Kelas</th><th>Mata Pelajaran</th><th>Prestasi</th><th>KKM</th><th>Formatif</th><th>Sumatif Tengah Semester</th><th>Sumatif Akhir Semester</th><th>Aksi</th></tr></thead><tbody id="gradeRows"></tbody></table></div>
+</div></section>
+
+<section id="parents" class="page"><div class="card">
+<div class="toolbar"><div class="tools"><input id="pq" class="search" placeholder="Cari nama siswa / orang tua..." oninput="renderParents()"></div><div class="tools"><button class="btn primary" onclick="printParents()">🖨️ Print</button></div></div><div class="muted">Data orang tua dikelola dari form siswa.</div></div>
+<div class="tablewrap"><table class="table"><thead><tr><th>Siswa</th><th>Ayah</th><th>NIK Ayah</th><th>Pekerjaan</th><th>Telp</th><th>TTL Ayah</th><th>Ibu</th><th>NIK Ibu</th><th>Pekerjaan</th><th>Telp</th><th>TTL Ibu</th><th>Aksi</th></tr></thead><tbody id="parentRows"></tbody></table></div>
+</div></section>
+
+<section id="settings" class="page"><div class="settings">
+<div class="card"><h3 style="color:var(--blue)">Profil Sekolah</h3><div class="field"><label>Nama Sekolah</label><input id="schoolName"></div><div class="field"><label>Ganti Logo</label><input id="logoFile" type="file" accept="image/*"></div><button class="btn primary" onclick="saveProfile()">Simpan Profil</button></div>
+<div class="card"><h3 style="color:var(--blue)">Akun Login Supabase</h3><div class="field"><label>Email Baru</label><input id="newUser" type="email"></div><div class="field"><label>Password Baru</label><input id="newPass" type="password" placeholder="Minimal 6 karakter"></div><button class="btn goldbtn" onclick="saveAccount()">Simpan Akun</button><p class="muted" style="font-size:12px;margin-top:10px">Login aplikasi menggunakan email dan password Supabase. Jangan masukkan secret key di HTML.</p></div>
+<div class="card"><h3 style="color:var(--blue)">Backup & Data</h3><button class="btn secondary" onclick="backup()">Backup JSON</button> <label class="btn secondary">Import JSON<input type="file" accept=".json" onchange="restore(event)" style="display:none"></label> <button class="btn danger" onclick="resetAll()">Reset Data</button></div>
+<div class="card"><h3 style="color:var(--blue)">Pratinjau</h3><div class="preview"><img id="previewLogo"><div><b id="previewSchool"></b><div class="muted">Buku Induk Siswa</div></div></div></div>
+</div></section>
+</main></div>
+
+<div id="modal" class="modal" onclick="if(event.target===this)closeModal()"><div class="modalbox"><div class="modalhead"><h3 id="mt"></h3><button class="close" onclick="closeModal()">✕</button></div><div id="mc"></div></div></div>
+<div id="toast" class="toast"></div>
+
+<script>
+const SUPABASE_URL="https://sjuehwxbzvfdlvxicvrr.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY="sb_publishable_urJF_SZlHG-Q5YNqrWRbdg_ALX6sPCs";
+let supabase=null;
+let supabaseReady=false;
+let navBound=false;
+/* =========================================================
+   KONEKSI SUPABASE TANPA CDN
+   Dibuat agar file HTML yang dibuka langsung dari HP (content:// / file://)
+   tetap dapat terhubung ke Supabase tanpa bergantung pada jsDelivr/unpkg.
+   ========================================================= */
+const SESSION_KEY="SMK_IT_HF_SUPABASE_SESSION_V1";
+
+function apiError(message,status){
+  const e=new Error(message||"Permintaan database gagal");
+  e.status=status||0;
+  return e;
+}
+
+async function rawFetch(url,options={}){
+  try{
+    const res=await fetch(url,options);
+    let data=null;
+    const txt=await res.text();
+    try{data=txt?JSON.parse(txt):null}catch{data=txt}
+    if(!res.ok){
+      const msg=(data&&typeof data==='object'&&(data.message||data.error_description||data.error))||txt||(`HTTP ${res.status}`);
+      throw apiError(msg,res.status);
+    }
+    return data;
+  }catch(e){
+    if(e instanceof TypeError) throw apiError("Tidak dapat terhubung ke Supabase. Pastikan internet aktif dan Chrome mengizinkan koneksi untuk file HTML ini.");
+    throw e;
+  }
+}
+
+class RestQuery{
+  constructor(client,table){this.client=client;this.table=table;this._method="GET";this._select=null;this._filters=[];this._order=[];this._limit=null;this._body=null;this._single=false;this._maybeSingle=false;this._upsert=false;this._onConflict=null;this._executed=false;}
+  select(columns="*"){this._select=columns;return this}
+  order(column,opts={}){this._order.push([column,opts]);return this}
+  limit(n){this._limit=n;return this}
+  eq(column,value){this._filters.push([column,"eq",value]);return this}
+  neq(column,value){this._filters.push([column,"neq",value]);return this}
+  insert(body){this._method="POST";this._body=body;return this}
+  update(body){this._method="PATCH";this._body=body;return this}
+  upsert(body,opts={}){this._method="POST";this._body=body;this._upsert=true;this._onConflict=opts.onConflict||null;return this}
+  delete(){this._method="DELETE";return this}
+  single(){this._single=true;return this}
+  maybeSingle(){this._maybeSingle=true;return this}
+  then(resolve,reject){return this.execute().then(resolve,reject)}
+  catch(reject){return this.execute().catch(reject)}
+  finally(fn){return this.execute().finally(fn)}
+  async execute(){
+    if(this._executed)return this._result;
+    this._executed=true;
+    try{
+      let url=this.client.url+"/rest/v1/"+encodeURIComponent(this.table);
+      const qs=[];
+      if(this._method==="GET"){
+        qs.push("select="+encodeURIComponent(this._select||"*"));
+      }
+      for(const [c,op,v] of this._filters){qs.push(encodeURIComponent(c)+"="+op+"."+encodeURIComponent(String(v)))}
+      for(const [c,o] of this._order){qs.push("order="+encodeURIComponent(c)+"."+(o.ascending===false?"desc":"asc")+(o.nullsFirst===true?".nullsfirst":o.nullsFirst===false?".nullslast":""))}
+      if(this._limit!=null)qs.push("limit="+encodeURIComponent(this._limit));
+      if(qs.length)url+="?"+qs.join("&");
+      const headers={"apikey":this.client.key,"Accept":"application/json"};
+      let body;
+      if(this._method!=="GET"){
+        headers["Content-Type"]="application/json";
+        if(this._select)headers["Prefer"]="return=representation";
+        if(this._upsert){headers["Prefer"]="resolution=merge-duplicates"+(this._select?",return=representation":"");if(this._onConflict)url+=(url.includes("?")?"&":"?")+"on_conflict="+encodeURIComponent(this._onConflict)}
+        body=JSON.stringify(this._body);
+      }
+      const data=await this.client.request(url,{method:this._method,headers,body});
+      let out=data;
+      if(this._single||this._maybeSingle){
+        const arr=Array.isArray(data)?data:[];
+        if(this._single){if(arr.length!==1)throw apiError(`Expected 1 row, received ${arr.length}`);out=arr[0]}
+        else out=arr.length?arr[0]:null;
+      }
+      this._result={data:out,error:null};
+    }catch(e){this._result={data:null,error:e}}
+    return this._result;
+  }
+}
+
+class RestClient{
+  constructor(url,key){this.url=url.replace(/\/$/,"");this.key=key;this.session=null;this.auth={
+    getSession:async()=>({data:{session:await this.getStoredSession()},error:null}),
+    signInWithPassword:async({email,password})=>this.signIn(email,password),
+    signOut:async()=>{this.session=null;localStorage.removeItem(SESSION_KEY);return {error:null}},
+    updateUser:async(payload)=>this.updateUser(payload),
+    onAuthStateChange:(cb)=>{this._authCallback=cb;return {data:{subscription:{unsubscribe:()=>{this._authCallback=null}}}}}
+  }}
+  async getStoredSession(){
+    try{const raw=localStorage.getItem(SESSION_KEY);if(!raw)return null;const s=JSON.parse(raw);if(!s?.access_token)return null;this.session=s;if(s.expires_at && Date.now()/1000>s.expires_at-30){if(s.refresh_token) return await this.refresh(s.refresh_token);return null}return s}catch{return null}
+  }
+  async saveSession(s){this.session=s;try{localStorage.setItem(SESSION_KEY,JSON.stringify(s))}catch{};if(this._authCallback)try{await this._authCallback("SIGNED_IN",s)}catch{};return s}
+  async refresh(refreshToken){
+    const data=await rawFetch(this.url+"/auth/v1/token?grant_type=refresh_token",{method:"POST",headers:{"apikey":this.key,"Content-Type":"application/json"},body:JSON.stringify({refresh_token:refreshToken})});
+    const s={...data,expires_at:Math.floor(Date.now()/1000)+(data.expires_in||3600)};return this.saveSession(s);
+  }
+  async signIn(email,password){
+    try{
+      const data=await rawFetch(this.url+"/auth/v1/token?grant_type=password",{method:"POST",headers:{"apikey":this.key,"Content-Type":"application/json"},body:JSON.stringify({email,password})});
+      const s={...data,expires_at:Math.floor(Date.now()/1000)+(data.expires_in||3600)};await this.saveSession(s);return {data:{user:data.user,session:s},error:null};
+    }catch(error){return {data:{user:null,session:null},error}}
+  }
+  async updateUser(payload){
+    try{const s=await this.getStoredSession();if(!s?.access_token)throw apiError("Sesi login sudah habis. Silakan login kembali.");const data=await rawFetch(this.url+"/auth/v1/user",{method:"PUT",headers:{"apikey":this.key,"Authorization":"Bearer "+s.access_token,"Content-Type":"application/json"},body:JSON.stringify(payload)});if(data?.email)s.user=data;await this.saveSession({...s,user:data});return {data:{user:data},error:null}}catch(error){return {data:{user:null},error}}
+  }
+  async request(url,opts={}){
+    let s=await this.getStoredSession();
+    const headers={...(opts.headers||{})};
+    headers["apikey"]=this.key;
+    if(s?.access_token)headers["Authorization"]="Bearer "+s.access_token;
+    try{return await rawFetch(url,{...opts,headers})}catch(e){
+      if(e.status===401 && s?.refresh_token){
+        try{s=await this.refresh(s.refresh_token);headers["Authorization"]="Bearer "+s.access_token;return await rawFetch(url,{...opts,headers})}catch{}
+      }
+      throw e;
+    }
+  }
+  from(table){return new RestQuery(this,table)}
+}
+
+function initSupabase(){
+  try{
+    if(!supabase){supabase=new RestClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY)}
+    supabaseReady=true;return true;
+  }catch(e){console.error(e);return false}
+}
+function needSupabase(){
+  if(supabaseReady&&supabase)return true;
+  toast("Koneksi Supabase belum siap. Pastikan internet aktif, lalu muat ulang halaman.");return false;
+}
+async function loadSupabaseScript(){return initSupabase()}
+
+const $=id=>document.getElementById(id);
+const v=id=>$(id)?.value??"";
+const esc=x=>String(x??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+const DEFAULT_SCHOOL="SMK IT HIDAYATUL FALAH";
+let db={school:DEFAULT_SCHOOL,logo:"",students:[],alumni:[],classes:[],grades:[]};
+let currentUser=null;
+let cloudBusy=false;
+const CACHE_KEY="SMK_IT_HF_ONLINE_CACHE_V1";
+function cache(){try{localStorage.setItem(CACHE_KEY,JSON.stringify(db))}catch(e){}}
+function readCache(){try{return JSON.parse(localStorage.getItem(CACHE_KEY)||"null")}catch{return null}}
+function toast(x){$("toast").textContent=x;$("toast").style.display="block";setTimeout(()=>$('toast').style.display="none",2200)}
+function metaParse(x){try{return x?JSON.parse(x):{}}catch{return {note:x||""}}}
+function metaString(x){return JSON.stringify(x||{})}
+function setLoginVisible(show){$("login").style.display=show?"flex":"none";$("app").style.display=show?"none":"block"}
+function ui(){
+  $("loginLogo").src=db.logo||"";$("sideLogo").src=db.logo||"";$("previewLogo").src=db.logo||"";
+  $("loginSchool").textContent=db.school||DEFAULT_SCHOOL;$("sideSchool").textContent=db.school||DEFAULT_SCHOOL;$("previewSchool").textContent=db.school||DEFAULT_SCHOOL;
+  $("schoolName").value=db.school||DEFAULT_SCHOOL;
+  $("newUser").value=currentUser?.email||"";
+  $("nStudent").textContent=db.students.length;$("nAlumni").textContent=db.alumni.length;$("nClass").textContent=db.classes.length;
+  $("nYear").textContent=new Set(db.students.map(s=>s.year).filter(Boolean)).size;
+  $("who").textContent=currentUser?.email||"";
+  renderStudents();renderAlumni();renderClasses();renderParents();renderGrades();
+}
+async function loadCloud(){
+  if(!currentUser || !needSupabase())return;
+  cloudBusy=true;
+  try{
+    const [settingsRes,classesRes,studentsRes,parentsRes,gradesRes,alumniRes]=await Promise.all([
+      supabase.from("app_settings").select("*").limit(1).maybeSingle(),
+      supabase.from("classes").select("*").order("name"),
+      supabase.from("students").select("*").order("nama"),
+      supabase.from("parents").select("*"),
+      supabase.from("grades").select("*").order("created_at"),
+      supabase.from("alumni").select("*").order("nama")
+    ]);
+    for(const r of [settingsRes,classesRes,studentsRes,parentsRes,gradesRes,alumniRes]) if(r.error) throw r.error;
+    const settings=settingsRes.data||{};
+    const classRows=classesRes.data||[];
+    const parentRows=parentsRes.data||[];
+    const parentByStudent=new Map(parentRows.map(p=>[p.student_id,p]));
+    db.school=settings.school_name||DEFAULT_SCHOOL;
+    db.logo=settings.school_logo||"";
+    db.classes=classRows.map(r=>{const m=metaParse(r.description);return {id:r.id,name:r.name,teacher:m.teacher||"",year:r.academic_year||"",note:m.note||""}});
+    db.students=(studentsRes.data||[]).map(r=>{const p=parentByStudent.get(r.id)||{};return {id:r.id,name:r.nama||"",nis:r.nis||"",nisn:r.nisn||"",citizenship:r.kewarganegaraan||"",bloodType:r.golongan_darah||"",childOrder:r.anak_ke??"",siblings:r.jumlah_saudara??"",livingWith:r.tinggal_bersama||"",birthplace:r.tempat_lahir||"",birthdate:r.tanggal_lahir||"",classId:r.kelas_id||null,className:r.kelas||"",year:r.tahun_masuk??"",religion:r.agama||"",address:r.alamat||"",height:r.tinggi_badan??"",weight:r.berat_badan??"",status:r.status||"aktif",father:{id:p.id||null,name:p.nama_ayah||"",nik:p.nik_ayah||"",job:p.pekerjaan_ayah||"",phone:p.telepon_ayah||"",place:p.tempat_lahir_ayah||"",date:p.tanggal_lahir_ayah||""},mother:{id:p.id||null,name:p.nama_ibu||"",nik:p.nik_ibu||"",job:p.pekerjaan_ibu||"",phone:p.telepon_ibu||"",place:p.tempat_lahir_ibu||"",date:p.tanggal_lahir_ibu||""}}});
+    const studentIndex=new Map(db.students.map((s,i)=>[s.id,i]));
+    db.grades=(gradesRes.data||[]).map(r=>{const m=metaParse(r.keterangan),studentIndexValue=studentIndex.get(r.student_id);return {id:r.id,studentId:r.student_id,studentIndex:studentIndexValue??-1,subject:r.mata_pelajaran||"",achievement:m.achievement||"",kkm:m.kkm??"",formative:m.formative??"",midterm:m.midterm??"",finalexam:m.finalexam??r.nilai??"",semester:r.semester||"",academicYear:r.tahun_ajaran||""}});
+    db.alumni=(alumniRes.data||[]).map(r=>({id:r.id,studentId:r.student_id,name:r.nama||"",nis:r.nis||"",nisn:r.nisn||"",className:r.kelas_terakhir||"",year:r.tahun_keluar??"",date:r.tanggal_keluar||"",reason:r.alasan_keluar||"",destination:r.tujuan||"",note:r.keterangan||""}));
+    cache();ui();
+  }catch(e){console.error(e);toast("Gagal mengambil data online: "+(e.message||e));}
+  finally{cloudBusy=false}
+}
+async function ensureSettings(){
+  if(!needSupabase()) return;
+  const {data,error}=await supabase.from("app_settings").select("id").limit(1).maybeSingle();
+  if(error) throw error;
+  if(!data){const {error:e}=await supabase.from("app_settings").insert({school_name:DEFAULT_SCHOOL});if(e)throw e;}
+}
+async function login(){
+  $("loginErr").textContent="";
+  if(!needSupabase()){$("loginErr").textContent="Koneksi database belum siap. Aktifkan internet dan coba lagi.";return}
+  const email=$("lu").value.trim(),password=$("lp").value;
+  if(!email||!password){$("loginErr").textContent="Email dan password wajib diisi.";return}
+  const {data,error}=await supabase.auth.signInWithPassword({email,password});
+  if(error){$("loginErr").textContent=error.message||"Login gagal.";return}
+  currentUser=data.user;setLoginVisible(false);await loadCloud();toast("Login berhasil");
+}
+async function logout(){if(!needSupabase())return;await supabase.auth.signOut();currentUser=null;setLoginVisible(true);$("lp").value="";}
+function bindNav(){
+  if(navBound)return;
+  navBound=true;
+  document.querySelectorAll(".nav button").forEach(b=>b.addEventListener("click",()=>{
+    document.querySelectorAll(".nav button").forEach(x=>x.classList.remove("active"));
+    b.classList.add("active");
+    document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));
+    const page=$(b.dataset.p);if(page)page.classList.add("active");
+    $("title").textContent=b.textContent.trim().replace(/^[^\w]+/,"");
+  }));
+}
+async function boot(){
+  bindNav();
+  const cached=readCache();if(cached){db={...db,...cached};ui()}
+  setLoginVisible(true);
+  const ready=await loadSupabaseScript();
+  if(!ready){toast("Database belum terhubung. Tombol menu tetap bisa digunakan; aktifkan internet lalu muat ulang aplikasi.");return;}
+  try{
+    const {data}=await supabase.auth.getSession();
+    if(data.session){
+      currentUser=data.session.user;setLoginVisible(false);
+      try{await ensureSettings();await loadCloud()}catch(e){console.error(e);toast("Gagal memuat database online: "+(e.message||e))}
+    }
+    supabase.auth.onAuthStateChange(async(_event,session)=>{
+      currentUser=session?.user||null;
+      if(currentUser){setLoginVisible(false);try{await ensureSettings();await loadCloud()}catch(e){console.error(e)}}else setLoginVisible(true);
+    });
+  }catch(e){console.error(e);toast("Gagal memulai koneksi database: "+(e.message||e))}
+}
+async function saveStudent(i){
+  if(!needSupabase())return;
+  const old=i<0?null:db.students[i];
+  const s={...(old||{}),name:v("sn"),nisn:v("nisn"),nis:v("snis"),citizenship:v("scit"),bloodType:v("sbg"),childOrder:v("schild"),siblings:v("ssib"),livingWith:v("slive"),birthplace:v("sbp"),birthdate:v("sbd")||null,className:v("scl"),year:v("sy")?Number(v("sy")):null,religion:v("sr"),address:v("sa"),height:v("sh")?Number(v("sh")):null,weight:v("sw")?Number(v("sw")):null,status:"aktif",father:{name:v("fn"),nik:v("fik"),job:v("fj"),phone:v("fp"),place:v("fbp"),date:v("fbd")||null},mother:{name:v("mn"),nik:v("mik"),job:v("mj"),phone:v("mp"),place:v("mbp"),date:v("mbd")||null}};
+  const row={nama:s.name,nis:s.nis||null,nisn:s.nisn||null,tempat_lahir:s.birthplace||null,tanggal_lahir:s.birthdate,kelas:s.className||null,tahun_masuk:s.year,agama:s.religion||null,kewarganegaraan:s.citizenship||null,alamat:s.address||null,tinggi_badan:s.height,berat_badan:s.weight,golongan_darah:s.bloodType||null,anak_ke:s.childOrder?Number(s.childOrder):null,jumlah_saudara:s.siblings!==""?Number(s.siblings):null,tinggal_bersama:s.livingWith||null,status:"aktif",updated_at:new Date().toISOString()};
+  let q=old?.id?supabase.from("students").update(row).eq("id",old.id).select().single():supabase.from("students").insert(row).select().single();
+  const {data,error}=await q;if(error){toast("Gagal menyimpan siswa: "+error.message);return}
+  s.id=data.id;
+  const p={student_id:data.id,nama_ayah:s.father.name||null,nik_ayah:s.father.nik||null,pekerjaan_ayah:s.father.job||null,telepon_ayah:s.father.phone||null,tempat_lahir_ayah:s.father.place||null,tanggal_lahir_ayah:s.father.date,nama_ibu:s.mother.name||null,nik_ibu:s.mother.nik||null,pekerjaan_ibu:s.mother.job||null,telepon_ibu:s.mother.phone||null,tempat_lahir_ibu:s.mother.place||null,tanggal_lahir_ibu:s.mother.date,updated_at:new Date().toISOString()};
+  const {error:pe}=await supabase.from("parents").upsert(p,{onConflict:"student_id"});if(pe){toast("Siswa tersimpan, tetapi data orang tua gagal: "+pe.message);return}
+  await loadCloud();closeModal();toast("Data siswa tersimpan online");
+}
+async function delStudent(i){if(!needSupabase())return;if(!confirm("Hapus data siswa ini?"))return;const id=db.students[i]?.id;if(!id){return}const {error}=await supabase.from("students").delete().eq("id",id);if(error){toast("Gagal menghapus: "+error.message);return}await loadCloud();toast("Data siswa dihapus");}
+async function saveGrade(i){
+  if(!needSupabase())return;
+  const old=i<0?null:db.grades[i],s=db.students[Number(v("gs"))];if(!s?.id){toast("Pilih siswa terlebih dahulu");return}
+  const meta={achievement:v("gprest"),kkm:v("gkkm"),formative:v("gfor"),midterm:v("gsts"),finalexam:v("gsas")};
+  const row={student_id:s.id,mata_pelajaran:v("gsub"),semester:null,tahun_ajaran:null,nilai:v("gsas")?Number(v("gsas")):null,keterangan:metaString(meta),updated_at:new Date().toISOString()};
+  const {error}=old?.id?await supabase.from("grades").update(row).eq("id",old.id):await supabase.from("grades").insert(row);
+  if(error){toast("Gagal menyimpan nilai: "+error.message);return}await loadCloud();closeModal();toast("Data nilai tersimpan online");
+}
+async function delGrade(i){if(!needSupabase())return;if(!confirm("Hapus data nilai ini?"))return;const id=db.grades[i]?.id;const {error}=await supabase.from("grades").delete().eq("id",id);if(error){toast("Gagal menghapus: "+error.message);return}await loadCloud();toast("Data nilai dihapus")}
+async function saveAlumni(i){
+  if(!needSupabase())return;
+  const old=i<0?null:db.alumni[i];const row={student_id:old?.studentId||null,nama:v("an"),nis:old?.nis||null,nisn:v("ai")||null,kelas_terakhir:v("ac")||null,tahun_keluar:v("ay")?Number(v("ay")):null,keterangan:v("at")||null};
+  const {error}=old?.id?await supabase.from("alumni").update(row).eq("id",old.id):await supabase.from("alumni").insert(row);if(error){toast("Gagal menyimpan alumni: "+error.message);return}await loadCloud();closeModal();toast("Data alumni tersimpan online");
+}
+async function delAlumni(i){if(!needSupabase())return;if(!confirm("Hapus alumni ini?"))return;const {error}=await supabase.from("alumni").delete().eq("id",db.alumni[i]?.id);if(error){toast("Gagal menghapus: "+error.message);return}await loadCloud();toast("Data alumni dihapus")}
+async function saveClass(i){
+  if(!needSupabase())return;
+  const old=i<0?null:db.classes[i];const meta={teacher:v("ct"),note:v("ck")};const row={name:v("cn"),academic_year:v("cy")||null,description:metaString(meta)};
+  const {error}=old?.id?await supabase.from("classes").update(row).eq("id",old.id):await supabase.from("classes").insert(row);if(error){toast("Gagal menyimpan kelas: "+error.message);return}await loadCloud();closeModal();toast("Kelas tersimpan online");
+}
+async function delClass(i){if(!needSupabase())return;const id=db.classes[i]?.id;if(!id)return;if(!confirm("Hapus kelas ini? Siswa tetap tersimpan, tetapi data kelas akan dilepas."))return;const {error}=await supabase.from("classes").delete().eq("id",id);if(error){toast("Gagal menghapus kelas: "+error.message);return}await loadCloud();toast("Kelas dihapus")}
+async function saveProfile(){
+  if(!needSupabase())return;
+  const school=v("schoolName").trim()||DEFAULT_SCHOOL;const f=$("logoFile").files[0];
+  const finish=async logoData=>{let existing=await supabase.from("app_settings").select("id").limit(1).maybeSingle();if(existing.error){toast(existing.error.message);return}let row={school_name:school,school_logo:logoData??(db.logo||null),updated_at:new Date().toISOString()};let res=existing.data?await supabase.from("app_settings").update(row).eq("id",existing.data.id):await supabase.from("app_settings").insert(row);if(res.error){toast("Gagal menyimpan profil: "+res.error.message);return}await loadCloud();toast("Profil sekolah tersimpan online")};
+  if(f){const r=new FileReader();r.onload=()=>finish(r.result);r.readAsDataURL(f)}else finish(db.logo);
+}
+async function saveAccount(){
+  if(!needSupabase())return;
+  const email=v("newUser").trim(),p=v("newPass");if(!email||!p){toast("Email dan password baru wajib diisi");return}
+  const {error}=await supabase.auth.updateUser({email,password:p});if(error){toast("Gagal mengubah akun: "+error.message);return}
+  $("newPass").value="";toast("Akun berhasil diperbarui. Jika email berubah, cek email verifikasi dari Supabase.");
+}
+async function backup(){const payload={...db,exportedAt:new Date().toISOString(),account:currentUser?.email||""};const b=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="backup-buku-induk-online.json";a.click();URL.revokeObjectURL(a.href)}
+async function restore(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=async()=>{try{const x=JSON.parse(r.result);if(!Array.isArray(x.students)||!Array.isArray(x.classes)||!Array.isArray(x.alumni)||!Array.isArray(x.grades))throw new Error("Format backup tidak sesuai");for(const c of x.classes){const row={name:c.name,academic_year:c.year||null,description:metaString({teacher:c.teacher||"",note:c.note||""})};if(c.id)await supabase.from("classes").upsert({...row,id:c.id});else await supabase.from("classes").insert(row)}toast("Import selesai untuk kelas. Untuk data siswa, gunakan penambahan/edit dari aplikasi agar relasi orang tua dan nilai aman.");await loadCloud()}catch(err){toast("Backup JSON tidak valid: "+err.message)}};r.readAsText(f)}
+async function resetAll(){if(!needSupabase())return;if(!confirm("Semua data siswa, alumni, kelas, dan nilai akan dihapus dari database online. Lanjutkan?"))return;const tables=["grades","parents","alumni","students","classes"];for(const t of tables){const {error}=await supabase.from(t).delete().neq("id",0);if(error){toast("Reset gagal pada "+t+": "+error.message);return}}await loadCloud();toast("Data online berhasil direset")}
+function studentModal(i=-1){let s=i<0?{}:db.students[i],f=s.father||{},m=s.mother||{};modal(i<0?"Tambah Siswa":"Edit Data Siswa",`<form onsubmit="event.preventDefault();saveStudent(${i})"><div class="formgrid"><div class="section">Data Siswa</div><div class="field"><label>Nama Siswa *</label><input id="sn" required value="${esc(s.name)}"></div><div class="field"><label>NISN</label><input id="nisn" value="${esc(s.nisn)}"></div><div class="field"><label>NIS</label><input id="snis" value="${esc(s.nis)}"></div><div class="field"><label>Kewarganegaraan</label><input id="scit" value="${esc(s.citizenship||"Indonesia")}"></div><div class="field"><label>Golongan Darah</label><select id="sbg"><option value="">Pilih</option>${["A","B","AB","O"].map(x=>`<option ${s.bloodType===x?"selected":""}>${x}</option>`).join("")}</select></div><div class="field"><label>Anak Ke-</label><input id="schild" type="number" min="1" value="${esc(s.childOrder)}"></div><div class="field"><label>Jumlah Saudara</label><input id="ssib" type="number" min="0" value="${esc(s.siblings)}"></div><div class="field"><label>Tinggal Dengan</label><select id="slive"><option value="">Pilih</option>${["Tinggal dengan orang tua","Tinggal di asrama","Tinggal dengan saudara"].map(x=>`<option ${s.livingWith===x?"selected":""}>${x}</option>`).join("")}</select></div><div class="field"><label>Tempat Lahir</label><input id="sbp" value="${esc(s.birthplace)}"></div><div class="field"><label>Tanggal Lahir</label><input id="sbd" type="date" value="${esc(s.birthdate)}"></div><div class="field"><label>Kelas</label><input id="scl" placeholder="Contoh: X TKJ 1" value="${esc(s.className)}"></div><div class="field"><label>Tahun Masuk</label><input id="sy" type="number" value="${esc(s.year)}"></div><div class="field"><label>Agama</label><select id="sr"><option value="">Pilih</option>${["Islam","Kristen","Katolik","Hindu","Buddha","Konghucu","Lainnya"].map(x=>`<option ${s.religion===x?"selected":""}>${x}</option>`).join("")}</select></div><div class="field"><label>Tinggi Badan (cm)</label><input id="sh" type="number" value="${esc(s.height)}"></div><div class="field"><label>Berat Badan (kg)</label><input id="sw" type="number" value="${esc(s.weight)}"></div><div class="field full"><label>Alamat</label><textarea id="sa" rows="2">${esc(s.address)}</textarea></div><div class="section">Data Orang Tua — Ayah</div><div class="field"><label>Nama Ayah</label><input id="fn" value="${esc(f.name)}"></div><div class="field"><label>NIK Ayah</label><input id="fik" value="${esc(f.nik)}"></div><div class="field"><label>Pekerjaan Ayah</label><input id="fj" value="${esc(f.job)}"></div><div class="field"><label>Nomor Telepon Ayah</label><input id="fp" value="${esc(f.phone)}"></div><div class="field"><label>Tempat Lahir Ayah</label><input id="fbp" value="${esc(f.place)}"></div><div class="field"><label>Tanggal Lahir Ayah</label><input id="fbd" type="date" value="${esc(f.date)}"></div><div class="section">Data Orang Tua — Ibu</div><div class="field"><label>Nama Ibu</label><input id="mn" value="${esc(m.name)}"></div><div class="field"><label>NIK Ibu</label><input id="mik" value="${esc(m.nik)}"></div><div class="field"><label>Pekerjaan Ibu</label><input id="mj" value="${esc(m.job)}"></div><div class="field"><label>Nomor Telepon Ibu</label><input id="mp" value="${esc(m.phone)}"></div><div class="field"><label>Tempat Lahir Ibu</label><input id="mbp" value="${esc(m.place)}"></div><div class="field"><label>Tanggal Lahir Ibu</label><input id="mbd" type="date" value="${esc(m.date)}"></div></div><div class="modalactions"><button type="button" class="btn secondary" onclick="closeModal()">Batal</button><button class="btn primary">Simpan</button></div></form>`)}
+function gradeModal(i=-1){let g=i<0?{}:db.grades[i];let subjects=["Bahasa Indonesia","Bahasa Inggris","Kejurusan","Pendidikan Agama Islam","PJOK","Matematika"];modal(i<0?"Tambah Nilai":"Edit Nilai",`<form onsubmit="event.preventDefault();saveGrade(${i})"><div class="formgrid"><div class="section">Data Nilai</div><div class="field"><label>Siswa *</label><select id="gs" required>${db.students.map((x,idx)=>`<option value="${idx}" ${String(g.studentIndex)===String(idx)?"selected":""}>${esc(x.name)} — NIS: ${esc(x.nis||"-")}</option>`).join("")}</select></div><div class="field"><label>Mata Pelajaran *</label><select id="gsub" required>${subjects.map(x=>`<option ${g.subject===x?"selected":""}>${x}</option>`).join("")}</select></div><div class="field"><label>Prestasi</label><input id="gprest" value="${esc(g.achievement)}" placeholder="Contoh: Juara 1 / Sangat Baik"></div><div class="field"><label>KKM</label><input id="gkkm" type="number" min="0" max="100" value="${esc(g.kkm)}"></div><div class="field"><label>Nilai Formatif</label><input id="gfor" type="number" min="0" max="100" value="${esc(g.formative)}"></div><div class="field"><label>Nilai Sumatif Tengah Semester</label><input id="gsts" type="number" min="0" max="100" value="${esc(g.midterm)}"></div><div class="field"><label>Nilai Sumatif Akhir Semester</label><input id="gsas" type="number" min="0" max="100" value="${esc(g.finalexam)}"></div></div><div class="modalactions"><button type="button" class="btn secondary" onclick="closeModal()">Batal</button><button class="btn primary">Simpan</button></div></form>`)}
+function alumniModal(i=-1){let a=i<0?{}:db.alumni[i];modal(i<0?"Tambah Alumni":"Edit Alumni",`<form onsubmit="event.preventDefault();saveAlumni(${i})"><div class="formgrid"><div class="field"><label>Nama Alumni *</label><input id="an" required value="${esc(a.name)}"></div><div class="field"><label>NISN</label><input id="ai" value="${esc(a.nisn)}"></div><div class="field"><label>Kelas Terakhir</label><input id="ac" value="${esc(a.className)}"></div><div class="field"><label>Tahun Lulus</label><input id="ay" type="number" value="${esc(a.year)}"></div><div class="field full"><label>Keterangan</label><textarea id="at" rows="3">${esc(a.note)}</textarea></div></div><div class="modalactions"><button type="button" class="btn secondary" onclick="closeModal()">Batal</button><button class="btn primary">Simpan</button></div></form>`)}
+function classModal(i=-1){let c=i<0?{}:db.classes[i];modal(i<0?"Tambah Kelas":"Edit Kelas",`<form onsubmit="event.preventDefault();saveClass(${i})"><div class="formgrid"><div class="field"><label>Nama Kelas *</label><input id="cn" required value="${esc(c.name)}"></div><div class="field"><label>Wali Kelas</label><input id="ct" value="${esc(c.teacher)}"></div><div class="field"><label>Tahun Ajaran</label><input id="cy" placeholder="2026/2027" value="${esc(c.year)}"></div><div class="field"><label>Keterangan</label><input id="ck" value="${esc(c.note)}"></div></div><div class="modalactions"><button type="button" class="btn secondary" onclick="closeModal()">Batal</button><button class="btn primary">Simpan</button></div></form>`)}
+function modal(title,html){$("mt").textContent=title;$("mc").innerHTML=html;$("modal").classList.add("show")}
+function closeModal(){$("modal").classList.remove("show")}
+function renderStudents(){let q=(v("sq")||"").toLowerCase(),a=db.students.filter(s=>JSON.stringify(s).toLowerCase().includes(q));$("studentRows").innerHTML=a.length?a.map(s=>{let i=db.students.indexOf(s);return `<tr><td><b>${esc(s.name)}</b></td><td>${esc(s.nisn)}</td><td>${esc(s.birthplace)}, ${esc(s.birthdate)}</td><td><span class="badge">${esc(s.className)}</span></td><td>${esc(s.year)}</td><td>${esc(s.religion)}</td><td>${esc(s.address)}</td><td>${esc(s.height)} cm / ${esc(s.weight)} kg</td><td><div class="actions"><button class="btn secondary" onclick="studentModal(${i})">Edit</button><button class="btn danger" onclick="delStudent(${i})">Hapus</button></div></td></tr>`}).join(""):`<tr><td colspan="9" style="text-align:center;padding:30px;color:var(--muted)">Belum ada data siswa.</td></tr>`}
+function renderGrades(){let q=(v("gq")||"").toLowerCase();let a=db.grades.filter(g=>{let s=db.students[g.studentIndex]||{};return JSON.stringify({...g,student:s}).toLowerCase().includes(q)});$("gradeRows").innerHTML=a.length?a.map(g=>{let i=db.grades.indexOf(g),s=db.students[g.studentIndex]||{};return `<tr><td><b>${esc(s.name)}</b></td><td>${esc(s.nis)}</td><td>${esc(s.className)}</td><td>${esc(g.subject)}</td><td>${esc(g.achievement)}</td><td>${esc(g.kkm)}</td><td>${esc(g.formative)}</td><td>${esc(g.midterm)}</td><td>${esc(g.finalexam)}</td><td><div class="actions"><button class="btn secondary" onclick="gradeModal(${i})">Edit</button><button class="btn danger" onclick="delGrade(${i})">Hapus</button></div></td></tr>`}).join(""):`<tr><td colspan="10" style="text-align:center;padding:30px;color:var(--muted)">Belum ada data nilai.</td></tr>`}
+function renderAlumni(){let q=(v("aq")||"").toLowerCase(),a=db.alumni.filter(x=>JSON.stringify(x).toLowerCase().includes(q));$("alumniRows").innerHTML=a.length?a.map(x=>{let i=db.alumni.indexOf(x);return `<tr><td><b>${esc(x.name)}</b></td><td>${esc(x.nisn)}</td><td>${esc(x.className)}</td><td>${esc(x.year)}</td><td>${esc(x.note)}</td><td><div class="actions"><button class="btn secondary" onclick="alumniModal(${i})">Edit</button><button class="btn danger" onclick="delAlumni(${i})">Hapus</button></div></td></tr>`}).join(""):`<tr><td colspan="6" style="text-align:center;padding:30px;color:var(--muted)">Belum ada alumni.</td></tr>`}
+function renderClasses(){let groups={};db.students.forEach((s,i)=>{let k=s.className||"Belum Ada Kelas";(groups[k]??=[]).push({...s,i})});let keys=[...new Set([...db.classes.map(c=>c.name),...Object.keys(groups)])];$("classGrid").innerHTML=keys.length?keys.map(k=>{let c=db.classes.find(x=>x.name===k)||{},arr=groups[k]||[];return `<div class="classcard"><div class="classhead"><b>${esc(k)}</b><br><small>Wali: ${esc(c.teacher||"-")} • ${esc(c.year||"-")}</small></div><div class="classbody">${arr.length?arr.map(s=>`<div class="classstudent"><span><b>${esc(s.name)}</b><br><small>NISN: ${esc(s.nisn)||"-"}</small></span><button class="btn secondary" onclick="studentModal(${s.i})">Edit</button></div>`).join(""):`<div class="muted" style="padding:12px">Belum ada siswa di kelas ini.</div>`}<div style="padding:9px 0"><button class="btn secondary" onclick="classModal(${db.classes.indexOf(c)})">Edit Kelas</button></div></div></div>`}).join(""):`<div class="card">Belum ada kelas atau siswa.</div>`}
+function renderParents(){let q=(v("pq")||"").toLowerCase(),a=db.students.filter(s=>JSON.stringify(s).toLowerCase().includes(q));$("parentRows").innerHTML=a.length?a.map(s=>{let i=db.students.indexOf(s),f=s.father||{},m=s.mother||{};return `<tr><td><b>${esc(s.name)}</b><br><span class="badge">${esc(s.className)}</span></td><td>${esc(f.name)}</td><td>${esc(f.nik)}</td><td>${esc(f.job)}</td><td>${esc(f.phone)}</td><td>${esc(f.place)}, ${esc(f.date)}</td><td>${esc(m.name)}</td><td>${esc(m.nik)}</td><td>${esc(m.job)}</td><td>${esc(m.phone)}</td><td>${esc(m.place)}, ${esc(m.date)}</td><td><button class="btn secondary" onclick="studentModal(${i})">Edit</button></td></tr>`}).join(""):`<tr><td colspan="12" style="text-align:center;padding:30px;color:var(--muted)">Belum ada data orang tua.</td></tr>`}
+function csv(){let rows=[["Nama","NIS","NISN","Kewarganegaraan","Golongan Darah","Anak Ke","Jumlah Saudara","Tinggal Dengan","Tempat Lahir","Tanggal Lahir","Kelas","Tahun Masuk","Agama","Alamat","Tinggi","Berat","Nama Ayah","NIK Ayah","Pekerjaan Ayah","Telepon Ayah","Tempat Lahir Ayah","Tanggal Lahir Ayah","Nama Ibu","NIK Ibu","Pekerjaan Ibu","Telepon Ibu","Tempat Lahir Ibu","Tanggal Lahir Ibu"]];db.students.forEach(s=>rows.push([s.name,s.nis,s.nisn,s.citizenship,s.bloodType,s.childOrder,s.siblings,s.livingWith,s.birthplace,s.birthdate,s.className,s.year,s.religion,s.address,s.height,s.weight,s.father?.name,s.father?.nik,s.father?.job,s.father?.phone,s.father?.place,s.father?.date,s.mother?.name,s.mother?.nik,s.mother?.job,s.mother?.phone,s.mother?.place,s.mother?.date]));let c=rows.map(r=>r.map(x=>`"${String(x??"").replace(/"/g,'""')}"`).join(",")).join("\n"),b=new Blob([c],{type:"text/csv;charset=utf-8"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="data-siswa-online.csv";a.click()}
+function printDash(){window.print()}
+function printStudents(){window.print()}
+function printGrades(){window.print()}
+function printAlumni(){window.print()}
+function printClasses(){window.print()}
+function printParents(){window.print()}
+boot();
+
+</script>
+</body>
+</html>
